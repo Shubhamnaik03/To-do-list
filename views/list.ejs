@@ -1,0 +1,33 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1 class="today"> <%= listTitle %> </h1>
+    <h1 class="lists"> <%= constTitle %> </h2>
+  </div>
+
+  <div class="box">
+      <div class="main-list">
+<a href="/home list" class="home-a"><i class="fas fa-house-user"></i>&nbsp; Home</a>
+<a href="/work list" class="work-a"><i class="fas fa-briefcase"></i>&nbsp; Work </a>
+<a href="/college list" class="college-a"><i class="fas fa-university"></i>&nbsp; College</a>
+</div>
+
+  <%  newListItems.forEach(function(item){ %>
+
+    <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
+        <p><%=item.name%></p>
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+    </form>
+  <%  }) %>
+
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
